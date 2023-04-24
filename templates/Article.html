@@ -38,6 +38,7 @@
       </div>
     </div>
   </header>
+    {% if current_user.is_authenticated %}
   <div class="container mt-5">
   <h1>Добавление статьи</h1>
   <form method='post'>
@@ -51,6 +52,21 @@
   {% for cat, msg in get_flashed_messages(True) %}
     <div class="flash {{cat}}">{{msg}}</div>
     {% endfor %}
+    {% else %}
+      <div class="container mt-5">
+  <h1>Добавление статьи</h1>
+  <form method='post'>
+    <input type="text" name="name"  class="form-control" placeholder="Введите имя"><br>
+    <input type="text" name="name_car"  class="form-control" placeholder="Введите название модели"><br>
+    <input type="integer" name="price"  class="form-control" placeholder="Введите цену машины(в рублях)"><br>
+    <textarea type="text" name="felling"  class="form-control" placeholder="Напишите свое мнение о ней"></textarea><br>
+       <a class="btn btn-warning" href="/login">Отправить</a>
+  </form>
+</div>
+  {% for cat, msg in get_flashed_messages(True) %}
+    <div class="flash {{cat}}">{{msg}}</div>
+    {% endfor %}
+     {% endif %}
 </div>
 </body>
 </html>
